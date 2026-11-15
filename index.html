@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d12" />
+  <meta name="description" content="Lumora Store - Top up diamond, UC, dan voucher game favoritmu secara instan, aman, dan murah." />
+  <title>Lumora Store — Top Up Game Instan &amp; Terpercaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="brand" aria-label="Lumora Store beranda">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lumora<em>.</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#games" class="active">Game</a>
+        <a href="#topup">Top Up</a>
+        <a href="#why">Keunggulan</a>
+        <a href="#" id="checkBtn">Cek Transaksi</a>
+      </nav>
+
+      <a href="#topup" class="btn btn-primary btn-cta">Top Up Sekarang</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow">Top Up Game Premium</p>
+          <h1>Isi ulang game favoritmu, <em>instan</em> dalam hitungan detik.</h1>
+          <p>Diamond, UC, dan voucher dari puluhan game populer dengan harga bersahabat, pembayaran lengkap, dan layanan 24 jam.</p>
+          <div class="hero-actions">
+            <a href="#games" class="btn btn-primary">Pilih Game</a>
+            <a href="#why" class="btn btn-ghost">Kenapa Lumora?</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong data-count="250000" data-suffix="+">0</strong><span>Transaksi sukses</span></div>
+            <div class="stat"><strong data-count="99" data-suffix="%">0</strong><span>Rating pelanggan</span></div>
+            <div class="stat"><strong>24/7</strong><span>Layanan aktif</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Transaksi terbaru">
+          <div class="hero-card-head">
+            <span>Transaksi terbaru</span>
+            <span class="live-dot">Live</span>
+          </div>
+          <ul class="feed" id="liveFeed" aria-live="polite"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Pilih Game</h2>
+            <p>Klik game untuk mulai top up.</p>
+          </div>
+          <div class="search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <label for="searchInput" class="sr-only">Cari game</label>
+            <input type="search" id="searchInput" placeholder="Cari game..." autocomplete="off" />
+          </div>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter kategori"></div>
+        <div class="game-grid" id="gameGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="topup">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Top Up</h2>
+            <p>Lengkapi data di bawah untuk melanjutkan.</p>
+          </div>
+        </div>
+
+        <div class="topup">
+          <div>
+            <div class="panel">
+              <div class="selected-game" id="selectedGame"></div>
+            </div>
+
+            <div class="panel">
+              <h3 class="step-title"><span class="step-num">1</span>Masukkan Data Akun</h3>
+              <div class="field-row">
+                <div class="field">
+                  <label for="userId">User ID</label>
+                  <input type="text" id="userId" inputmode="numeric" placeholder="Contoh: 12345678" autocomplete="off" />
+                </div>
+                <div class="field" id="zoneField">
+                  <label for="zoneId" id="zoneLabel">Zone ID</label>
+                  <input type="text" id="zoneId" placeholder="Contoh: 2001" autocomplete="off" />
+                </div>
+              </div>
+              <p class="hint">User ID dapat ditemukan di halaman profil dalam game.</p>
+            </div>
+
+            <div class="panel">
+              <h3 class="step-title"><span class="step-num">2</span>Pilih Nominal</h3>
+              <div class="option-grid" id="itemGrid"></div>
+            </div>
+
+            <div class="panel">
+              <h3 class="step-title"><span class="step-num">3</span>Metode Pembayaran</h3>
+              <div id="paymentGroups"></div>
+            </div>
+
+            <div class="panel">
+              <h3 class="step-title"><span class="step-num">4</span>Kontak (Opsional)</h3>
+              <div class="field">
+                <label for="contact">Nomor WhatsApp atau Email</label>
+                <input type="text" id="contact" placeholder="08xxxxxxxxxx atau nama@email.com" autocomplete="email" />
+              </div>
+              <p class="hint">Bukti transaksi akan dikirim ke kontak ini.</p>
+            </div>
+          </div>
+
+          <aside class="panel summary" aria-label="Ringkasan pesanan">
+            <h3>Ringkasan Pesanan</h3>
+            <dl>
+              <div><dt>Game</dt><dd id="sumGame">-</dd></div>
+              <div><dt>ID Akun</dt><dd id="sumId">-</dd></div>
+              <div><dt>Item</dt><dd id="sumItem">-</dd></div>
+              <div><dt>Pembayaran</dt><dd id="sumPay">-</dd></div>
+              <div><dt>Biaya admin</dt><dd id="sumFee">-</dd></div>
+            </dl>
+            <div class="total">
+              <span>Total bayar</span>
+              <strong id="sumTotal">Rp 0</strong>
+            </div>
+            <button type="button" class="btn btn-primary" id="buyBtn" disabled>Beli Sekarang</button>
+            <p class="secure">Transaksi aman &amp; terenkripsi</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Kenapa Lumora?</h2>
+            <p>Pengalaman top up yang cepat, aman, dan nyaman.</p>
+          </div>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h3>Proses Instan</h3>
+            <p>Item masuk otomatis ke akunmu dalam hitungan detik.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Aman &amp; Legal</h3>
+            <p>Produk resmi dan transaksi dilindungi enkripsi.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+            <h3>Pembayaran Lengkap</h3>
+            <p>E-wallet, QRIS, hingga virtual account bank.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Layanan 24/7</h3>
+            <p>Tim support siap membantu kapan pun kamu butuh.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lumora<em>.</em></span>
+      </a>
+      <p>&copy; <span id="year"></span> Lumora Store. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-box">
+      <div class="success-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h2 id="modalTitle">Pesanan Berhasil</h2>
+      <p>Silakan selesaikan pembayaran. Item akan otomatis masuk ke akunmu.</p>
+      <div class="invoice" id="invoiceDetail"></div>
+      <button type="button" class="btn btn-primary" id="closeModal" style="width:100%">Selesai</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
